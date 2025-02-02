@@ -1,0 +1,141 @@
+<style>
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px auto;
+    position: relative;
+  }
+  
+  video {
+    display: flex;
+    width: 100%;;
+    justify-content: center;
+    align-items: center;
+    margin: 0px auto;
+    background: linear-gradient(white, transparent);
+  }
+  
+  .videoComponent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .btn {
+    display: flex;
+    flex-wrap: wrap;
+    min-width: 60px;
+    gap: 10px;
+    font-size: 12px;
+    font-weight: 690;
+    margin: 3.1px;
+    border: none;
+  }
+  
+  button {
+    gap: 1 1 auto;
+    display: flex;
+    flex-wrap: wrap;
+    cursor: pointer;
+  }
+  
+  .btn-play {
+    background: linear-gradient(pink, purple);
+    padding: 10px;
+    border-radius: 12.8px;
+    color: white;
+  }
+  
+  .btn-pause {
+    background:radial-gradient(cyan, orange), linear-gradient(blue, cyan);
+    background-blend-mode: overlay;
+    padding: 10px;
+    border-radius: 12.8px;
+    color: white;
+  }
+  
+  .btn-muted {
+    background: linear-gradient(black, white);
+    padding: 10px;
+    border-radius: 12.8px;
+    color: white;
+  }
+  
+  .btn-unmuted {
+    background: linear-gradient(#fff, #333);
+    padding: 10px;
+    border-radius: 12.8px;
+    color: white;
+  }
+  
+  .btn-minimize{
+    background: linear-gradient(orange, yellow);
+    padding: 10px;
+    border-radius: 12.8px;
+    color: white;
+  }
+</style>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Video</title>
+</head>
+<body>
+  <div class="container">
+    <video width="600" height="360" controls>
+      <source src="intro.mp4" type="video/mp4" />
+    </video>
+    <div class="videoComponent">
+      <button class="btn btn-play" onclick="play()" onmouseover="playover()"  onmouseout="playout" id="GO">PLAY</button>
+      <button class="btn btn-pause" onclick="pause()">PAUSE</button>
+      <button class="btn btn-muted" onclick="muted()">MUTED</button>
+      <button class="btn btn-unmuted" onclick="unmuted()">UNMUTED</button>
+      <button class="btn btn-minimize" onclick="minimize()">MINIMIZE</button>
+      <span></span>
+    </div>
+  </div>
+  
+  <script>
+  const body = document.body;
+  const video = document.querySelector("video");
+  const go = document.getElementById("GO");
+    function play() {
+      video.play();
+      document.title = "Video-PLAY";
+      body.style.background = "linear-gradient(to left, pink, purple)";
+      body.style.width = "100%";
+      body.style.height = "100vh";
+    };
+    function pause() {
+      video.pause();
+      document.title = "Video-PAUSE";
+      body.style.background = "linear-gradient(to right, blue, cyan)";
+    };
+    function muted() {
+      video.muted = true;
+      document.title = "Video-MUTE";
+    }
+    function unmuted() {
+      video.muted = false;
+      document.title = "Video-UNMUTED";
+    }
+    function minimize() {
+      video.requestPictureInPicture();
+      document.title = "Video-MINIMIZE";
+      body.style.background = "linear-gradient(to bottom, yellow, orange)";
+    };
+  </script>
+</body>
+</html>
